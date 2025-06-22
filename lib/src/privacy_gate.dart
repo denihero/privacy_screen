@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:privacy_screen/src/privacy_lock.dart';
 import 'privacy_helpers.dart';
@@ -159,21 +161,16 @@ class _PrivacyGateState extends State<PrivacyGate>
         // Use Overlay, otherwise input focus can not work
 
         if (_lockVisibilityCtrl.value > 0)
-          Overlay(
-            initialEntries: [
-              OverlayEntry(
-                builder: (_) => Positioned.fill(
-                  child: PrivacyLockWidget(
-                    backgroundColor: _backgroundColor,
-                    animation: _lockVisibilityCtrl,
-                    blurColor: _blurColor,
-                    blurRadius: _blurRadius,
-                    lockBuilder: widget.lockBuilder,
-                  ),
-                ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.grey.shade200.withOpacity(0.5),
               ),
-            ],
-          ),
+            ),
+          )
       ],
     );
   }
