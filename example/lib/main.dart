@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       builder: (_, child) {
         return PrivacyGate(
-          lockBuilder: (ctx) => const LockerPage(),
           navigatorKey: navigatorKey,
           onLifeCycleChanged: (value) => print(value),
           onLock: () => print("onLock"),
@@ -74,7 +73,6 @@ class _FirstRouteState extends State<FirstRoute> {
                       await PrivacyScreen.instance.enable(
                         iosOptions: const PrivacyIosOptions(
                           enablePrivacy: true,
-                          privacyImageName: "LaunchImage",
                           autoLockAfterSeconds: 5,
                           lockTrigger: IosLockTrigger.didEnterBackground,
                         ),
@@ -93,7 +91,6 @@ class _FirstRouteState extends State<FirstRoute> {
                       await PrivacyScreen.instance.enable(
                         iosOptions: const PrivacyIosOptions(
                           enablePrivacy: true,
-                          privacyImageName: "LaunchImage",
                           autoLockAfterSeconds: 5,
                           lockTrigger: IosLockTrigger.didEnterBackground,
                         ),
@@ -112,7 +109,6 @@ class _FirstRouteState extends State<FirstRoute> {
                       await PrivacyScreen.instance.enable(
                         iosOptions: const PrivacyIosOptions(
                           enablePrivacy: true,
-                          privacyImageName: "LaunchImage",
                           autoLockAfterSeconds: 5,
                           lockTrigger: IosLockTrigger.didEnterBackground,
                         ),
@@ -120,7 +116,6 @@ class _FirstRouteState extends State<FirstRoute> {
                           enableSecure: true,
                           autoLockAfterSeconds: 5,
                         ),
-                        backgroundColor: Colors.red.withOpacity(0.4),
                         blurEffect: PrivacyBlurEffect.dark,
                       );
                     },

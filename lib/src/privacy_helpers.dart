@@ -24,11 +24,11 @@ extension PrivacyBlurEffectExtension on PrivacyBlurEffect {
   double get blurRadius {
     switch (this) {
       case PrivacyBlurEffect.extraLight:
-        return 32;
+        return 5;
       case PrivacyBlurEffect.none:
         return 0;
       default:
-        return 18;
+        return 2;
     }
   }
 }

@@ -60,14 +60,12 @@ class _PrivacyGateState extends State<PrivacyGate>
         AnimationController(vsync: this, duration: _animationDuration);
     super.initState();
     PrivacyScreen.instance.stateNotifier.addListener(_stateNotified);
-    PrivacyScreen.instance.lockNotifier.addListener(_lockNotified);
     PrivacyScreen.instance.lifeCycleNotifier.addListener(_lifeCycleNotified);
   }
 
   @override
   void dispose() {
     PrivacyScreen.instance.stateNotifier.removeListener(_stateNotified);
-    PrivacyScreen.instance.lockNotifier.removeListener(_lockNotified);
     PrivacyScreen.instance.lifeCycleNotifier.removeListener(_lifeCycleNotified);
     _lockVisibilityCtrl.dispose();
     super.dispose();
@@ -90,9 +88,10 @@ class _PrivacyGateState extends State<PrivacyGate>
 
   void _lockNotified() {
     if (PrivacyScreen.instance.shouldLock) {
-      _doLock();
+      print('Locking the screen');
+      // _doLock();
     } else {
-      _doUnlock();
+      // _doUnlock();
     }
   }
 
@@ -160,17 +159,6 @@ class _PrivacyGateState extends State<PrivacyGate>
         widget.child ?? const SizedBox.shrink(),
         // Use Overlay, otherwise input focus can not work
 
-        if (_lockVisibilityCtrl.value > 0)
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.grey.shade200.withOpacity(0.5),
-              ),
-            ),
-          )
       ],
     );
   }
