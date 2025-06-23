@@ -38,11 +38,10 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
     if (widget.blurRadius > 0) {
       return BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 7,
-          sigmaY: 7,
-        ),
+            sigmaX: widget.blurRadius * (widget.animation.value),
+            sigmaY: widget.blurRadius * (widget.animation.value)),
         child: Container(
-          color: Colors.white,
+          color: widget.blurColor,
           child: child,
         ),
       );
