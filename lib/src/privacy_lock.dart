@@ -38,11 +38,10 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
     if (widget.blurRadius > 0) {
       return BackdropFilter(
         filter: ImageFilter.blur(
-            sigmaX: widget.blurRadius * (widget.animation.value),
-            sigmaY: widget.blurRadius * (widget.animation.value)),
-        child: Container(
-          child: child,
+          sigmaX: widget.blurRadius * (widget.animation.value),
+          sigmaY: widget.blurRadius * (widget.animation.value),
         ),
+        child: child,
       );
     } else {
       return child ?? const SizedBox.shrink();
@@ -51,15 +50,10 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: widget.animation,
-      builder: (ctx, _) => _blurBuilder(
-        child: Opacity(
-          opacity: widget.animation.value,
-          child: Material(
-            child: widget.lockBuilder?.call(context),
-          ),
-        ),
+    return _blurBuilder(
+      child: Material(
+        color: Colors.transparent,
+        child: widget.lockBuilder?.call(context),
       ),
     );
   }
