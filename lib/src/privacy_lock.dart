@@ -53,6 +53,17 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _blurBuilder();
+    return AnimatedBuilder(
+      animation: widget.animation,
+      builder: (ctx, _) => _blurBuilder(
+        child: Opacity(
+          opacity: widget.animation.value,
+          child: Material(
+            color: widget.backgroundColor,
+            child: widget.lockBuilder?.call(context),
+          ),
+        ),
+      ),
+    );
   }
 }
