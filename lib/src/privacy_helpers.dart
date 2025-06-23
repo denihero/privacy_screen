@@ -17,7 +17,7 @@ extension PrivacyBlurEffectExtension on PrivacyBlurEffect {
       case PrivacyBlurEffect.none:
         return const Color(0x00FFFFFF);
       default:
-        return const Color.fromARGB(50, 255, 255, 255);
+        return const Color.fromARGB(0, 255, 255, 255);
     }
   }
 
@@ -28,7 +28,7 @@ extension PrivacyBlurEffectExtension on PrivacyBlurEffect {
       case PrivacyBlurEffect.none:
         return 0;
       default:
-        return 1;
+        return 2;
     }
   }
 }
