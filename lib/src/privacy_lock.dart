@@ -41,7 +41,6 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
             sigmaX: widget.blurRadius * (widget.animation.value),
             sigmaY: widget.blurRadius * (widget.animation.value)),
         child: Container(
-          color: widget.blurColor,
           child: child,
         ),
       );
@@ -58,7 +57,6 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
         child: Opacity(
           opacity: widget.animation.value,
           child: Material(
-            color: widget.backgroundColor,
             child: widget.lockBuilder?.call(context),
           ),
         ),
