@@ -41,8 +41,7 @@ class PrivacyGate extends StatefulWidget {
   State<PrivacyGate> createState() => _PrivacyGateState();
 }
 
-class _PrivacyGateState extends State<PrivacyGate>
-    with SingleTickerProviderStateMixin {
+class _PrivacyGateState extends State<PrivacyGate> with SingleTickerProviderStateMixin {
   late AnimationController _lockVisibilityCtrl;
 
   final Duration _animationDuration = const Duration(milliseconds: 300);
@@ -56,16 +55,17 @@ class _PrivacyGateState extends State<PrivacyGate>
 
   @override
   void initState() {
-    _lockVisibilityCtrl =
-        AnimationController(vsync: this, duration: _animationDuration);
+    _lockVisibilityCtrl = AnimationController(vsync: this, duration: _animationDuration);
     super.initState();
     PrivacyScreen.instance.stateNotifier.addListener(_stateNotified);
+    PrivacyScreen.instance.lockNotifier.addListener(_lockNotified);
     PrivacyScreen.instance.lifeCycleNotifier.addListener(_lifeCycleNotified);
   }
 
   @override
   void dispose() {
     PrivacyScreen.instance.stateNotifier.removeListener(_stateNotified);
+    PrivacyScreen.instance.lockNotifier.removeListener(_lockNotified);
     PrivacyScreen.instance.lifeCycleNotifier.removeListener(_lifeCycleNotified);
     _lockVisibilityCtrl.dispose();
     super.dispose();
@@ -88,10 +88,9 @@ class _PrivacyGateState extends State<PrivacyGate>
 
   void _lockNotified() {
     if (PrivacyScreen.instance.shouldLock) {
-      print('Locking the screen');
-      // _doLock();
+      _doLock();
     } else {
-      // _doUnlock();
+      _doUnlock();
     }
   }
 
@@ -122,7 +121,6 @@ class _PrivacyGateState extends State<PrivacyGate>
   void _doLock() {
     if (widget.lockBuilder != null) {
       if (widget.navigatorKey?.currentState != null) {
-        print("_toLockPage");
         _toLockPage();
       } else {
         if (_lockVisibilityCtrl.value != 1) {
@@ -158,7 +156,6 @@ class _PrivacyGateState extends State<PrivacyGate>
       children: [
         widget.child ?? const SizedBox.shrink(),
         // Use Overlay, otherwise input focus can not work
-
       ],
     );
   }

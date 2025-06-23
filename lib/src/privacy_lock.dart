@@ -53,6 +53,6 @@ class _PrivacyLockWidgetState extends State<PrivacyLockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    return _blurBuilder();
   }
 }
