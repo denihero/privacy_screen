@@ -109,7 +109,7 @@ class _PrivacyGateState extends State<PrivacyGate> with SingleTickerProviderStat
           lockBuilder: widget.lockBuilder,
         ),
         transitionDuration: Duration.zero,
-        reverseTransitionDuration: _animationDuration,
+        reverseTransitionDuration:  Duration.zero,
         fullscreenDialog: true,
         opaque: false,
       );
