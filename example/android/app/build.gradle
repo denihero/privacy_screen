@@ -26,8 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    namespace "ca.couver.privacy_screen_example"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,9 +46,9 @@ android {
         applicationId "ca.couver.privacy_screen_example"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dcompileSdkev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 35
-        // minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 24
+        targetSdkVersion 34
+        compileSdk 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

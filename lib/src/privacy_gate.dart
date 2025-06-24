@@ -46,7 +46,7 @@ class _PrivacyGateState extends State<PrivacyGate> with SingleTickerProviderStat
 
   final Duration _animationDuration = const Duration(milliseconds: 300);
 
-  double _blurRadius = 0;
+  double _blurRadius = 8;
   Color _blurColor = const Color(0xffffffff);
   PrivacyBlurEffect _blurEffect = PrivacyBlurEffect.none;
   Color _backgroundColor = const Color(0xffffffff);
@@ -109,7 +109,7 @@ class _PrivacyGateState extends State<PrivacyGate> with SingleTickerProviderStat
           lockBuilder: widget.lockBuilder,
         ),
         transitionDuration: Duration.zero,
-        reverseTransitionDuration:  Duration.zero,
+        reverseTransitionDuration: const Duration(milliseconds: 100),
         fullscreenDialog: true,
         opaque: false,
       );

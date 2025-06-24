@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       builder: (_, child) {
         return PrivacyGate(
+          lockBuilder: (context) => const LockerPage(),
           navigatorKey: navigatorKey,
           onLifeCycleChanged: (value) => print(value),
           onLock: () => print("onLock"),
@@ -63,8 +64,7 @@ class _FirstRouteState extends State<FirstRoute> {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () =>
-                        launchUrl(Uri.parse("https://www.flutter.dev/")),
+                    onPressed: () => launchUrl(Uri.parse("https://www.flutter.dev/")),
                     child: const Text("Test Native: Url Launch"),
                   ),
                   const Divider(),
@@ -162,66 +162,23 @@ class LockerPage extends StatelessWidget {
   const LockerPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        var result = await showDialog(
-          context: context,
-          builder: (ctx) => Dialog(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "Confirmation",
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  const Text("Are you sure to unlock?"),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(true);
-                          },
-                          child: const Text('Yes'),
-                        ),
-                      ),
-                      const SizedBox(width: 8.0),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: const Text('No'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              width: 100,
+              height: 100,
+              child: FlutterLogo(),
             ),
-          ),
-        );
-        if (result == true) {
-          PrivacyScreen.instance.unlock();
-        }
-        return false;
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextFormField(),
-              ElevatedButton(
-                child: const Text("Unlock"),
-                onPressed: () => PrivacyScreen.instance.unlock(),
-              ),
-            ],
-          ),
+            ElevatedButton(
+              child: const Text("Unlock"),
+              onPressed: () => PrivacyScreen.instance.unlock(),
+            ),
+          ],
         ),
       ),
     );
